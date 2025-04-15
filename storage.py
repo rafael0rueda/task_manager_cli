@@ -22,7 +22,7 @@ def add_task(file_path, new_task):
             "task": new_task["task"],
             "due": new_task["due"],
             "priority":new_task["priority"],
-            "done": False
+            "done": new_task["done"]
         }
          
         tasks[new_task_id] = data
@@ -30,3 +30,15 @@ def add_task(file_path, new_task):
         # Save all task back to the file
         with open(file_path, "w") as file:
             json.dump(tasks, file, indent=4)
+
+
+def list_tasks(file_path):
+     with open(file_path, "r") as file:
+          data = json.load(file)
+    
+     for task, task_info in data.items():
+          print(task)
+          for k, v in task_info.items():
+               print(f"{k}: {v}")
+        
+    
