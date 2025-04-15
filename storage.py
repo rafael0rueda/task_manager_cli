@@ -41,7 +41,7 @@ def list_tasks(file_path):
           for k, v in task_info.items():
                print(f"{k}: {v}")
         
-def task_done(file_path, task_id):
+def done_task(file_path, task_id):
     task_id = f"task{task_id}"
 
     if os.path.exists(file_path): 
@@ -54,6 +54,24 @@ def task_done(file_path, task_id):
          tasks = {}
     tasks[task_id]['complete'] = True
     print(tasks[task_id])
+
+    with open(file_path, "w") as file:
+            json.dump(tasks, file, indent=4)
+
+def delete_task(file_path, task_id):
+    task_id = f"task{task_id}"
+
+    if os.path.exists(file_path): 
+         with open(file_path, "r") as file:
+               try:
+                    tasks = json.load(file)
+               except json.JSONDecodeError:
+                    tasks = {}
+    else:
+         tasks = {}
+    
+    del tasks[task_id]
+    print(f"{task_id} deleted")
 
     with open(file_path, "w") as file:
             json.dump(tasks, file, indent=4)

@@ -1,6 +1,6 @@
 from datetime import datetime
 from argparse import ArgumentParser, Namespace, ArgumentTypeError
-from storage import add_task, list_tasks, task_done
+from storage import add_task, list_tasks, done_task, delete_task
 
 def validate_date(date_str):
     try:
@@ -18,10 +18,13 @@ add_group.add_argument('--due', type=validate_date, help='Due date (e.g., 2025-0
 add_group.add_argument('--priority', type=str, choices=['low', 'normal', 'high'], help='Priority: low, normal, or high')
 
 # List tasks
-parser.add_argument('--list', action='store_true')
+parser.add_argument('--list', action='store_true', help='List the task')
 
 # Change the list to complete
-parser.add_argument('--complete',type=int)
+parser.add_argument('--complete',type=int, help='Change the state to complete, --complete {id task}')
+
+# Delete task from the list
+parser.add_argument('--delete', type=int, help='Delete Task from the list, --delete {id task}')
 
 args: Namespace = parser.parse_args()
 file_path = "tasks.json"
@@ -44,5 +47,8 @@ if args.list:
     list_tasks(file_path)
 
 if args.complete:
-    task_done(file_path, args.complete)
+    done_task(file_path, args.complete)
+
+if args.delete:
+    delete_task(file_path, args.delete)
 
