@@ -12,6 +12,7 @@ parser = ArgumentParser(description="Task Manager CLI")
 
 # Create new tasks
 parser.usage = '--add "{task}" --due {date} --priority {low | normal | high}'
+
 add_group = parser.add_argument_group('Add Task Options')
 add_group.add_argument('--add', type=str, help='Task description in quotes')
 add_group.add_argument('--due', type=validate_date, help='Due date (e.g., 2025-04-15)')
@@ -38,7 +39,7 @@ if args.add:
                 "id": 0,
                 "task": args.add,
                 "due": args.due.strftime("%Y-%m-%d"),
-                "priority": args.priority,
+                "priority": args.priority.capitalize(),
                 "complete": False
             }
           add_task(file_path, task)

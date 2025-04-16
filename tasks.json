@@ -1,0 +1,30 @@
+{
+    "task1": {
+        "id": 1,
+        "task": "Hola",
+        "due": "2025-04-12",
+        "priority": "normal",
+        "complete": false
+    },
+    "task2": {
+        "id": 2,
+        "task": "Hola2",
+        "due": "2025-04-12",
+        "priority": "low",
+        "complete": true
+    },
+    "task3": {
+        "id": 3,
+        "task": "Buscar cosas para comer en la panaderia",
+        "due": "2025-04-15",
+        "priority": "Normal",
+        "complete": false
+    },
+    "task4": {
+        "id": 4,
+        "task": "Buscar cosas para comer en la panaderia 2",
+        "due": "2025-05-15",
+        "priority": "Normal",
+        "complete": false
+    }
+}
